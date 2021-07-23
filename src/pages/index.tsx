@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -44,6 +45,10 @@ export default function Home(): JSX.Element {
 
   return (
     <ThemeProvider theme={darkTheme}>
+      <Head>
+        <title>Pachinko</title>
+        <meta name="description" content="ぱちんこプログラム"></meta>
+      </Head>
       < Loading isLoading={isLoading} >
         <StyledMain>
 
