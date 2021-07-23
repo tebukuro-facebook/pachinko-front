@@ -1,0 +1,2 @@
+# pachinko-front
+ぱちんこ
