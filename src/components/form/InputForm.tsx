@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-
 
 import GetPachinkoRequestParam  from '../../models/GetPachinkoParam';
 import { isNumber } from '../../utils/TypeGuards';
@@ -23,7 +18,6 @@ const SliderArea= styled.div`
   margin-bottom: 20px;
 `
 
-
 export default function ContinuousSlider({getPachinko}:{getPachinko: (requestParams: GetPachinkoRequestParam) => Promise<void>}) {
 
   const [normal, setNormal] = useState<number>(10)
@@ -31,7 +25,7 @@ export default function ContinuousSlider({getPachinko}:{getPachinko: (requestPar
   const [kakuhen, setKakuhen] = useState<number>(10)
   const [keizoku, setKeizoku] = useState<number>(10)
 
-  const changeNormal = (event: any, newValue: number | number[]) => {
+  const changeNormal = (_event: any, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
 
     console.log('changeNormal');
@@ -39,17 +33,17 @@ export default function ContinuousSlider({getPachinko}:{getPachinko: (requestPar
     setNormal(newValue)
   }
 
-  const changeKoukaku = (event: any, newValue: number | number[]) => {
+  const changeKoukaku = (_event: any, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
     setKoukaku(newValue)
   }
 
-  const changeKakuhen = (event: any, newValue: number | number[]) => {
+  const changeKakuhen = (_event: any, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
     setKakuhen(newValue)
   }
 
-  const changeKeizoku = (event: any, newValue: number | number[]) => {
+  const changeKeizoku = (_event: any, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
     setKeizoku(newValue)
   }
