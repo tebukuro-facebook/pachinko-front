@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 
-const InputSlider = ({title, value, changeHandler}:{title: string, value: number, changeHandler: (event: any, newValue: number | number[])=> void}) => {
+const InputSlider = ({title, value, changeHandler}:{title: string, value: number, changeHandler: (event: any, newValue: number | number[])=> void}): JSX.Element => {
 
 
   return (

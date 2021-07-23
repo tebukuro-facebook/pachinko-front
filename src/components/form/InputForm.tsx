@@ -18,7 +18,7 @@ const SliderArea= styled.div`
   margin-bottom: 20px;
 `
 
-export default function ContinuousSlider({getPachinko}:{getPachinko: (requestParams: GetPachinkoRequestParam) => Promise<void>}) {
+export default function ContinuousSlider({getPachinko}:{getPachinko: (requestParams: GetPachinkoRequestParam) => Promise<void>}): JSX.Element {
 
   const [normal, setNormal] = useState<number>(10)
   const [koukaku, setKoukaku] = useState<number>(20)

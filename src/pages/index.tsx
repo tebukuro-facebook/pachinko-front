@@ -15,17 +15,15 @@ const StyledMain = styled.main`
 `
 
 const Title = styled.h1`
-  color: white;
   font-size: 35px;
 `
 
 const StyledH2 = styled.h2`
-  color: white;
   font-size: 20px;
   margin-top: 40px;
 `
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const [results, setResults] = useState<PachinkoResult[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
 

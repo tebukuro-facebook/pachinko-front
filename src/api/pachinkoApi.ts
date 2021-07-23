@@ -15,7 +15,7 @@ axios.interceptors.response.use(response => {
 
 const requestUrl = process.env.NEXT_PUBLIC_API_BASE_URL
 
-const callPachinkoApi = async (param: GetPachinkoRequestParam, setIsLoading: React.Dispatch<React.SetStateAction<boolean>>) => {
+const callPachinkoApi = async (param: GetPachinkoRequestParam, setIsLoading: React.Dispatch<React.SetStateAction<boolean>>): Promise<void | PachinkoResult[]> => {
 
   const requestParams: GetPachinkoRequestParam = param
 
