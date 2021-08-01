@@ -3,6 +3,8 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import GitHubIcon from '@material-ui/icons/GitHub';
+
 
 import { callPachinkoApi } from '../api/pachinkoApi'
 import InputForm from '../components/form/InputForm'
@@ -55,6 +57,7 @@ export default function Home(): JSX.Element {
           <CssBaseline/>
 
           <Title>pachinko</Title>
+          <a href='https://github.com/tebukuro-facebook/pachinko-front'><GitHubIcon/></a>
 
           <StyledH2 >
             設定
