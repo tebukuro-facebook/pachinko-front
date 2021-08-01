@@ -7,6 +7,16 @@ import Input from '@material-ui/core/Input';
 
 const InputSlider = ({title, value, max, min, changeHandler}:{title: string, value: number, max: number,min: number, changeHandler: (event: any, newValue: number | number[])=> void}): JSX.Element => {
 
+  /**
+   * onblurで値が範囲外の場合範囲内に収める.
+   */
+  const onBlurHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (parseFloat(event.target.value) > max){
+      changeHandler(event, max)
+    } else if (parseFloat(event.target.value) < min) {
+      changeHandler(event, min)
+    }
+  }
 
   return (
     <div>
@@ -21,12 +31,12 @@ const InputSlider = ({title, value, max, min, changeHandler}:{title: string, val
           <Input
             value={value}
             margin="dense"
-            // onChange={handleInputChange}
-            // onBlur={handleBlur}
+            onChange={(event) => changeHandler(event, parseFloat(event.target.value))}
+            onBlur={(event) => onBlurHandler(event)}
             inputProps={{
               step: 0.1,
-              min: 0,
-              max: 1000,
+              min: {min},
+              max: {max},
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
