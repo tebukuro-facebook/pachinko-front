@@ -38,10 +38,10 @@ export default function Home(): JSX.Element {
 
   const getPachinko = async (requestParams: GetPachinkoRequestParam) => {
 
-    const results = await callPachinkoApi(requestParams, setIsLoading)
+    const responseResults = await callPachinkoApi(requestParams, setIsLoading)
 
-    if (results) {
-      setResults(results)
+    if (responseResults) {
+      setResults(responseResults)
     }
   }
 
