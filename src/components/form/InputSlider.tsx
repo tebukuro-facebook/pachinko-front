@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 
-const InputSlider = ({title, value, changeHandler}:{title: string, value: number, changeHandler: (event: any, newValue: number | number[])=> void}): JSX.Element => {
+const InputSlider = ({title, value, max, min, changeHandler}:{title: string, value: number, max: number,min: number, changeHandler: (event: any, newValue: number | number[])=> void}): JSX.Element => {
 
 
   return (
@@ -15,7 +15,7 @@ const InputSlider = ({title, value, changeHandler}:{title: string, value: number
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs>
-          <Slider value={value} step={0.1} color='secondary' onChange={changeHandler} aria-labelledby="continuous-slider" />
+          <Slider value={value} max={max} min={min} step={0.1} color='secondary' onChange={changeHandler} aria-labelledby="continuous-slider" />
         </Grid>
         <Grid item>
           <Input
