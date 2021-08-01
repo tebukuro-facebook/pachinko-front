@@ -6,7 +6,7 @@ import Icon from '@material-ui/core/Icon';
 import GetPachinkoRequestParam  from '../../models/GetPachinkoParam';
 import { isNumber } from '../../utils/TypeGuards';
 import styled from 'styled-components';
-import InputSlider from './InputSliuder';
+import InputSlider from './InputSlider';
 
 
 const FormArea = styled.div`
@@ -22,8 +22,8 @@ export default function ContinuousSlider({getPachinko}:{getPachinko: (requestPar
 
   const [normal, setNormal] = useState<number>(10)
   const [koukaku, setKoukaku] = useState<number>(20)
-  const [kakuhen, setKakuhen] = useState<number>(10)
-  const [keizoku, setKeizoku] = useState<number>(10)
+  const [kakuhen, setKakuhen] = useState<number>(50)
+  const [keizoku, setKeizoku] = useState<number>(60)
 
   const changeNormal = (_event: any, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
