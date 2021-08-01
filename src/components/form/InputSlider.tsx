@@ -26,7 +26,7 @@ const InputSlider = ({title, value, max, min, changeHandler}:{title: string, val
             inputProps={{
               step: 0.1,
               min: 0,
-              max: 100,
+              max: 1000,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
