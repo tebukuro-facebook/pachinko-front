@@ -11,7 +11,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import styled from 'styled-components';
-import range from '../utils/Range';
+import { SymphogearResult } from '../models/SymphogearResult';
+import { isPachinkoResultArray } from '../utils/TypeGuards';
 
 
 const TableCellPaper = styled(Paper)`
@@ -23,45 +24,71 @@ const StyledTableHeader = styled(TableHead)`
   border-bottom: 2px double white;
 `
 
-const ResultTable = ({results}: {results: PachinkoResult[]}): JSX.Element => {
+const ResultTable = ({results}: {results: PachinkoResult[] | SymphogearResult[]}): JSX.Element => {
 
-  return (
-    <div>
-      <TableContainer component={TableCellPaper}>
-        <Table size="small"  aria-label="simple table">
-          <StyledTableHeader>
-            <TableRow>
-              <TableCell align="center">index</TableCell>
-              <TableCell align="center">回転数</TableCell>
-              <TableCell align="center">状態</TableCell>
-              <TableCell align="center">次回</TableCell>
-            </TableRow>
-          </StyledTableHeader>
-          <TableBody>
-            {results.map((result, index) => (
-              <TableRow key={index}>
-                <TableCell align="right">{index}</TableCell>
-                <TableCell align="right">{result.kaiten}</TableCell>
-                <TableCell align="right">{result.mode}</TableCell>
-                <TableCell align="right">{result.next}</TableCell>
-              </TableRow>
-            ))}
-            { (!results || !results.length)
-              &&
-              range(0, 20).map((number)=> {
-                <TableRow key={number}>
-                  <TableCell>{""}</TableCell>
-                  <TableCell>{""}</TableCell>
-                  <TableCell>{""}</TableCell>
-                  <TableCell>{""}</TableCell>
+
+  {
+    if(results.length <= 0) {
+      return (<div/>)
+    }
+  }
+
+  {
+    if (isPachinkoResultArray(results)) {
+      return (
+        <div>
+          <TableContainer component={TableCellPaper}>
+            <Table size="small"  aria-label="simple table">
+              <StyledTableHeader>
+                <TableRow>
+                  <TableCell align="center">index</TableCell>
+                  <TableCell align="center">回転数</TableCell>
+                  <TableCell align="center">状態</TableCell>
+                  <TableCell align="center">次回</TableCell>
                 </TableRow>
-              })
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
-  )
+              </StyledTableHeader>
+              <TableBody>
+                {results.map((result, index) => (
+                  <TableRow key={index}>
+                    <TableCell align="right">{index}</TableCell>
+                    <TableCell align="right">{result.kaiten}</TableCell>
+                    <TableCell align="right">{result.mode}</TableCell>
+                    <TableCell align="right">{result.next}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <TableContainer component={TableCellPaper}>
+            <Table size="small"  aria-label="simple table">
+              <StyledTableHeader>
+                <TableRow>
+                  <TableCell align="center">index</TableCell>
+                  <TableCell align="center">回転数</TableCell>
+                  <TableCell align="center">大当たり</TableCell>
+                </TableRow>
+              </StyledTableHeader>
+              <TableBody>
+                {results.map((result, index) => (
+                  <TableRow key={index}>
+                    <TableCell align="right">{index}</TableCell>
+                    <TableCell align="right">{result.kaiten}</TableCell>
+                    <TableCell align="right">{result.ooatari}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      )
+    }
+  }
+
 }
 
 export default ResultTable

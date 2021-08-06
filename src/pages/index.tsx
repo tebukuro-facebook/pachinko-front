@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -12,6 +12,11 @@ import ResultTable from '../components/ResultTable'
 import GetPachinkoRequestParam from '../models/GetPachinkoParam'
 import { PachinkoResult } from '../models/PachinkoResult'
 import Loading from '../components/LoadingOverlay';
+import { SymphogearParam } from '../models/SymphogearParam';
+import { callSymphogearApi } from '../api/SymphogearApi';
+import { SymphogearResult } from '../models/SymphogearResult';
+import { SymphogearForm } from '../components/form/SymphogearForm';
+import { FormTabs } from '../components/FormTabs';
 
 const StyledMain = styled.main`
   margin: 0 20px;
@@ -28,6 +33,18 @@ const StyledH2 = styled.h2`
 
 export default function Home(): JSX.Element {
   const [results, setResults] = useState<PachinkoResult[]>([])
+  const [symphogearResults, setSymphogearResults] = useState<SymphogearResult[]>([])
+
+  const [displayedResults, setDisplayedResults] = useState<PachinkoResult[] | SymphogearResult[]>([])
+
+  useEffect(() => {
+    setDisplayedResults(results)
+    }, [results])
+
+  useEffect(() => {
+    setDisplayedResults(symphogearResults)
+    }, [symphogearResults])
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const darkTheme = createTheme({
@@ -42,6 +59,15 @@ export default function Home(): JSX.Element {
 
     if (responseResults) {
       setResults(responseResults)
+    }
+  }
+
+  const getSymphogear = async (requestParams: SymphogearParam) => {
+
+    const responseResults = await callSymphogearApi(requestParams, setIsLoading)
+
+    if (responseResults) {
+      setSymphogearResults(responseResults)
     }
   }
 
@@ -63,13 +89,16 @@ export default function Home(): JSX.Element {
             設定
           </StyledH2>
 
-          <InputForm getPachinko={getPachinko}></InputForm>
+          <FormTabs titleList= {["Pachinko1", "Symphogear"]}>
+            <InputForm getPachinko={getPachinko}></InputForm>
+            <SymphogearForm getSymphogear={getSymphogear}></SymphogearForm>
+          </FormTabs>
 
           <StyledH2 >
             結果
           </StyledH2>
 
-          <ResultTable results={results} />
+          <ResultTable results={displayedResults} />
 
         </StyledMain>
 
