@@ -63,7 +63,7 @@ const SymphogearForm = ({getSymphogear}:{getSymphogear: (requestParams: Symphoge
         <InputSlider title={"特図2での小当たり確率[1/n]"} value={koukaku} max={400} min={10} changeHandler={changeKoukaku} key={1} />
         <InputSlider title={"特図1当せん時の電サポ回数[回]"} value={tokuzu1} max={100} min={0} changeHandler={changeTokuzu1} key={2} />
         <InputSlider title={"特図2当せん時の電サポ回数[回]"} value={tokuzu2} max={100} min={0} changeHandler={changeTokuzu2} key={3} />
-        <InputSlider title={"試行回数"} value={challenge} max={10000} min={0} changeHandler={changeChallenge} key={4} />
+        <InputSlider title={"試行回数"} value={challenge} max={10000} min={0} step={1} changeHandler={changeChallenge} key={4} />
       </SliderArea>
 
       <Button

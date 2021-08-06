@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 
-const InputSlider = ({title, value, max, min, changeHandler}:{title: string, value: number, max: number,min: number, changeHandler: (event: React.ChangeEvent<any>, newValue: number | number[])=> void}): JSX.Element => {
+const InputSlider = ({title, value, max, min, step, changeHandler}:{title: string, value: number, max: number,min: number, step?: number, changeHandler: (event: React.ChangeEvent<any>, newValue: number | number[])=> void}): JSX.Element => {
 
   /**
    * onblurで値が範囲外の場合範囲内に収める.
@@ -25,7 +25,7 @@ const InputSlider = ({title, value, max, min, changeHandler}:{title: string, val
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs>
-          <Slider value={value} max={max} min={min} step={0.1} color='secondary' onChange={changeHandler} aria-labelledby="continuous-slider" />
+          <Slider value={value} max={max} min={min} step={step ? step : 0.1} color='secondary' onChange={changeHandler} aria-labelledby="continuous-slider" />
         </Grid>
         <Grid item>
           <Input
