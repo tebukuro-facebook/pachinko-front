@@ -10,12 +10,11 @@ import { SymphogearParam } from '../../models/SymphogearParam';
 
 
 const FormArea = styled.div`
-  width: 80%;
   margin: 0 10px;
 `
 
 const SliderArea= styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 `
 
 const SymphogearForm = ({getSymphogear}:{getSymphogear: (requestParams: SymphogearParam) => Promise<void>}): JSX.Element => {

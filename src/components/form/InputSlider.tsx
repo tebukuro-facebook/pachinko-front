@@ -5,6 +5,13 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 
+import styled from 'styled-components';
+
+const SideInput = styled(Input)`
+  max-width: 40px
+`
+
+
 const InputSlider = ({title, value, max, min, step, changeHandler}:{title: string, value: number, max: number,min: number, step?: number, changeHandler: (event: React.ChangeEvent<any>, newValue: number | number[])=> void}): JSX.Element => {
 
   /**
@@ -23,12 +30,12 @@ const InputSlider = ({title, value, max, min, step, changeHandler}:{title: strin
       <Typography gutterBottom>
         {title}
       </Typography>
-      <Grid container spacing={4}>
+      <Grid container spacing={2}>
         <Grid item xs>
           <Slider value={value} max={max} min={min} step={step ? step : 0.1} color='secondary' onChange={changeHandler} aria-labelledby="continuous-slider" />
         </Grid>
         <Grid item>
-          <Input
+          <SideInput
             value={value}
             margin="dense"
             onChange={(event) => changeHandler(event, parseFloat(event.target.value))}

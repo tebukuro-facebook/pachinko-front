@@ -10,12 +10,11 @@ import InputSlider from './InputSlider';
 
 
 const FormArea = styled.div`
-  width: 80%;
   margin: 0 10px;
 `
 
 const SliderArea= styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 `
 
 export default function ContinuousSlider({getPachinko}:{getPachinko: (requestParams: GetPachinkoRequestParam) => Promise<void>}): JSX.Element {
