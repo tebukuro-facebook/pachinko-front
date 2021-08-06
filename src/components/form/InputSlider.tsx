@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 
-const InputSlider = ({title, value, max, min, changeHandler}:{title: string, value: number, max: number,min: number, changeHandler: (event: any, newValue: number | number[])=> void}): JSX.Element => {
+const InputSlider = ({title, value, max, min, changeHandler}:{title: string, value: number, max: number,min: number, changeHandler: (event: React.ChangeEvent<any>, newValue: number | number[])=> void}): JSX.Element => {
 
   /**
    * onblurで値が範囲外の場合範囲内に収める.

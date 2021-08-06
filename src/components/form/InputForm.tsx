@@ -25,7 +25,7 @@ export default function ContinuousSlider({getPachinko}:{getPachinko: (requestPar
   const [kakuhen, setKakuhen] = useState<number>(50)
   const [keizoku, setKeizoku] = useState<number>(60)
 
-  const changeNormal = (_event: any, newValue: number | number[]) => {
+  const changeNormal = (_event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
 
     console.log('changeNormal');
@@ -33,17 +33,17 @@ export default function ContinuousSlider({getPachinko}:{getPachinko: (requestPar
     setNormal(newValue)
   }
 
-  const changeKoukaku = (_event: any, newValue: number | number[]) => {
+  const changeKoukaku = (_event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
     setKoukaku(newValue)
   }
 
-  const changeKakuhen = (_event: any, newValue: number | number[]) => {
+  const changeKakuhen = (_event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
     setKakuhen(newValue)
   }
 
-  const changeKeizoku = (_event: any, newValue: number | number[]) => {
+  const changeKeizoku = (_event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, newValue: number | number[]) => {
     if (!isNumber(newValue)) return
     setKeizoku(newValue)
   }
@@ -63,7 +63,11 @@ export default function ContinuousSlider({getPachinko}:{getPachinko: (requestPar
         variant="contained"
         color="primary"
         endIcon={<Icon>send</Icon>}
-        onClick={()=> {getPachinko({normal: normal, koukaku:koukaku, kakuhen:kakuhen, keizoku:keizoku})}}
+        onClick={
+          ()=> {
+            getPachinko({normal: normal, koukaku:koukaku, kakuhen:kakuhen, keizoku:keizoku})
+          }
+        }
       >
         Send
       </Button>
