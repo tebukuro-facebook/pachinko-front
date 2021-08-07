@@ -8,21 +8,40 @@ import Input from '@material-ui/core/Input';
 import styled from 'styled-components';
 
 const SideInput = styled(Input)`
-  max-width: 40px
+  max-width: 60px
 `
 
+interface inputSliderProps {
+  title: string
+  value: number
+  max: number
+  min: number
+  step: number
+  changeHandler: (event: React.ChangeEvent<any>, newValue: number | number[])=> void
+}
 
-const InputSlider = ({title, value, max, min, step, changeHandler}:{title: string, value: number, max: number,min: number, step?: number, changeHandler: (event: React.ChangeEvent<any>, newValue: number | number[])=> void}): JSX.Element => {
+const InputSlider = ({title, value, max, min, step, changeHandler}:inputSliderProps): JSX.Element => {
 
   /**
    * onblurで値が範囲外の場合範囲内に収める.
    */
   const onBlurHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    if (parseFloat(event.target.value) > max){
-      changeHandler(event, max)
-    } else if (parseFloat(event.target.value) < min) {
-      changeHandler(event, min)
+    let inputValue = parseFloat(event.target.value)
+
+    if (step && step >= 1) {
+      inputValue = Math.round(inputValue)
     }
+
+    if (!inputValue) {
+      inputValue = min
+    }
+
+    if (inputValue > max){
+      inputValue = max
+    } else if (inputValue < min) {
+      inputValue = min
+    }
+    changeHandler(event, inputValue)
   }
 
   return (
@@ -32,7 +51,7 @@ const InputSlider = ({title, value, max, min, step, changeHandler}:{title: strin
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs>
-          <Slider value={value} max={max} min={min} step={step ? step : 0.1} color='secondary' onChange={changeHandler} aria-labelledby="continuous-slider" />
+          <Slider value={value} max={max} min={min} step={step} color='secondary' onChange={changeHandler} aria-labelledby="continuous-slider" />
         </Grid>
         <Grid item>
           <SideInput
@@ -41,9 +60,9 @@ const InputSlider = ({title, value, max, min, step, changeHandler}:{title: strin
             onChange={(event) => changeHandler(event, parseFloat(event.target.value))}
             onBlur={(event) => onBlurHandler(event)}
             inputProps={{
-              step: 0.1,
-              min: {min},
-              max: {max},
+              step: step,
+              min: min,
+              max: max,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
